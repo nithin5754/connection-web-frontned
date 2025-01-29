@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import {Outlet, useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +6,7 @@ import { addUser, userDetails } from "../utils/userSlice";
 import { useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../utils/contant";
+import Login from "./Login";
 
 const Body = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,11 @@ const Body = () => {
   return (
     <>
       <NavBar />
-      <Outlet />
+      {
+        user?
+        <Outlet />:<Login/>
+
+      }
       <Footer />
     </>
   );

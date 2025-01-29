@@ -1,9 +1,10 @@
-import { useState } from "react";
-import UserCard from "./UserCard"
+import { lazy, Suspense, useState } from "react";
+
 import { addUser } from "../utils/userSlice";
 import { BASE_URL } from "../utils/contant";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+const UserCard=lazy(()=>import('./UserCard'))
 
 const EditProfile = ({user}) => {
   const [firstName, setFirstName] = useState(user.firstName);
@@ -130,9 +131,11 @@ const saveProfile=async ()=>{
           </div>
         </div>
       </div>
-      <UserCard
+  <Suspense fallback={<h1>loading...</h1>}>
+  <UserCard
         user={{firstName, lastName, photoUrl, age, gender, about }}
       />
+  </Suspense>
     </div>
     {showToast && (
       <div className="toast toast-top toast-center">

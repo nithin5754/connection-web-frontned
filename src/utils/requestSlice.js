@@ -13,7 +13,10 @@ const requestSlice = createSlice({
 
       return newArray;
     },
+    emptyRequest:()=>{
+      return null
+    }
   },
 });
-export const { addRequest, removeRequest } = requestSlice.actions;
+export const { addRequest, removeRequest,emptyRequest } = requestSlice.actions;
 export default requestSlice.reducer;

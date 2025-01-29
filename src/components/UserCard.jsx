@@ -2,14 +2,11 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { BASE_URL } from "../utils/contant";
 import { removeUserFromFeed } from "../utils/feedSlice";
+import { useEffect, useState } from "react";
 
 const UserCard = ({ user }) => {
 
-
-
-
-
-
+const [isUser,setUser]=useState(user)
   const dispatch = useDispatch();
 
   const handleSendRequest = async (status, userId) => {
@@ -25,27 +22,33 @@ const UserCard = ({ user }) => {
     }
   };
 
+  useEffect(()=>{
+     if(user){
+      setUser(user)
+     }
+  },[user])
+
   return (
     <div className="card bg-base-300 w-96 shadow-xl">
       <figure className=" h-[300px]">
-        <img className="w-full h-full object-fill" src={user?.photoUrl} alt="photo" />
+        <img className="w-full h-full object-fill" src={isUser?.photoUrl} alt="photo" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">{user?.firstName + " " + user?.lastName}</h2>
-        {user?.age && user?.gender && <p>{user.age + ", " + user?.gender}</p>}
-        <p>{user?.about}</p>
+        <h2 className="card-title">{isUser?.firstName + " " + isUser?.lastName}</h2>
+        {isUser?.age && isUser?.gender && <p>{isUser.age + ", " + isUser?.gender}</p>}
+        <p>{isUser?.about}</p>
        {
-        user?._id?(
+        isUser?._id?(
           <div className="card-actions justify-center my-4">
           <button
             className="btn btn-primary"
-            onClick={() => handleSendRequest("ignored", user?._id)}
+            onClick={() => handleSendRequest("ignored", isUser?._id)}
           >
             Ignore
           </button>
           <button
             className="btn btn-secondary"
-            onClick={() => handleSendRequest("interested", user?._id)}
+            onClick={() => handleSendRequest("interested", isUser?._id)}
           >
             Interested
           </button>

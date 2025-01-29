@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import UserCard from "./UserCard";
+
 import axios from "axios";
 import { BASE_URL } from "../utils/contant";
 import { addFeed } from "../utils/feedSlice";
-import { useEffect } from "react";
-
+import { lazy, Suspense, useEffect } from "react";
+const UserCard=lazy(()=>import('./UserCard'))
 const Feed = () => {
   const feed = useSelector((store) => store.feed);
 
@@ -30,7 +30,9 @@ const Feed = () => {
   return (
     feed && (
       <div className="flex justify-center my-10">
+          <Suspense fallback={<h1>loading...</h1>}>
         <UserCard user={feed[0]} />
+          </Suspense>
       </div>
     )
   );

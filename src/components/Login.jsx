@@ -1,12 +1,13 @@
 import axios from "axios";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addUser } from "../utils/userSlice";
+import { addUser, userDetails } from "../utils/userSlice";
 import { BASE_URL } from "../utils/contant";
 
 
 const Login = () => {
+  const user=useSelector(userDetails)
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -15,6 +16,14 @@ const Login = () => {
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(()=>{
+
+    if(user){
+      navigate('/')
+    }
+
+  },[])
 
 
   const handleLogin = async () => {
