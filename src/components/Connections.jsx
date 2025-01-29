@@ -17,6 +17,8 @@ const Connections = () => {
       const res = await axios.get(BASE_URL + "/user/connections", {
         withCredentials: true,
       });
+
+
       dispatch(addConnections(res.data.data));
     } catch (err) {
       // Handle Error Case
@@ -32,7 +34,7 @@ const Connections = () => {
     <div className="text-center my-10">
     <h1 className="text-bold text-white text-3xl">Connections</h1>
 
-    {connections.map((connection) => {
+    {connections&&connections.map((connection) => {
       const { _id, firstName, lastName, photoUrl, age, gender, about } =
         connection;
 

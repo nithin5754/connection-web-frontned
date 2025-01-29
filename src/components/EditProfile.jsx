@@ -3,6 +3,7 @@ import UserCard from "./UserCard"
 import { addUser } from "../utils/userSlice";
 import { BASE_URL } from "../utils/contant";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 const EditProfile = ({user}) => {
   const [firstName, setFirstName] = useState(user.firstName);
@@ -130,7 +131,7 @@ const saveProfile=async ()=>{
         </div>
       </div>
       <UserCard
-        user={{ firstName, lastName, photoUrl, age, gender, about }}
+        user={{firstName, lastName, photoUrl, age, gender, about }}
       />
     </div>
     {showToast && (

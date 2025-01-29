@@ -4,6 +4,7 @@ import { userDetails } from "../utils/userSlice";
 
 const Profile = () => {
   const user = useSelector(userDetails);
+
   return (
     user && (
       <div>

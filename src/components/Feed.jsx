@@ -7,10 +7,11 @@ import { useEffect } from "react";
 
 const Feed = () => {
   const feed = useSelector((store) => store.feed);
+
   const dispatch = useDispatch();
 
   const getFeed = async () => {
-    if (feed) return;
+    if (feed&&feed.length>=1) return;
     try {
       const res = await axios.get(BASE_URL + "/feed", {
         withCredentials: true,
@@ -23,7 +24,7 @@ const Feed = () => {
 
   useEffect(() => {
     getFeed();
-  }, []);
+  }, [feed&&feed.length<=0]);
 
   if (!feed) return;
   return (

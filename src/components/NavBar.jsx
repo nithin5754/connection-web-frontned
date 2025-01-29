@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../utils/contant";
 
+import storage from "redux-persist/lib/storage";
 const NavBar = () => {
   const dispatch = useDispatch();
   const user = useSelector(userDetails);
@@ -13,6 +14,7 @@ const NavBar = () => {
     try {
       await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
       dispatch(removeUser());
+      storage.removeItem('persist:root')
       return navigate("/login");
     } catch (error) {
       console.log("logout:", error);

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeRequest } from "../utils/requestSlice";
+import {  addRequest, removeRequest } from "../utils/requestSlice";
 import { useEffect } from "react";
 import { BASE_URL } from "../utils/contant";
 import axios from "axios";
@@ -7,7 +7,7 @@ import axios from "axios";
 
 
 const Request = () => {
-  const requests = useSelector((store) => store.requests);
+  const requests = useSelector((store) => store.request);
   const dispatch = useDispatch();
   const reviewRequest = async (status, _id) => {
     try {
@@ -25,8 +25,8 @@ const Request = () => {
       const res = await axios.get(BASE_URL + "/user/requests/received", {
         withCredentials: true,
       });
-
-      dispatch(addRequests(res.data.data));
+  console.log("request",res.data.data)
+      dispatch(addRequest(res.data.data));
     } catch (err) {}
   };
 
