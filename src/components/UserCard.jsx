@@ -30,9 +30,13 @@ const [isUser,setUser]=useState(user)
 
   return (
     <div className="card bg-base-300 w-96 shadow-xl">
-      <figure className=" h-[300px]">
-        <img className="w-full h-full object-fill" src={isUser?.photoUrl} alt="photo" />
-      </figure>
+{
+  isUser?.photoUrl&&(
+    <figure className=" h-[300px]">
+    <img className="w-full h-full object-fill" src={isUser?.photoUrl} alt="photo" loading="lazy" />
+  </figure>
+  )
+}
       <div className="card-body">
         <h2 className="card-title">{isUser?.firstName + " " + isUser?.lastName}</h2>
         {isUser?.age && isUser?.gender && <p>{isUser.age + ", " + isUser?.gender}</p>}
