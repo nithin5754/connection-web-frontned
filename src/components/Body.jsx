@@ -36,7 +36,7 @@ const Body = () => {
   }, []);
 
   return (
-    <>
+    <div className="flex flex-col justify-between h-screen">
       <NavBar />
       {
         user?
@@ -44,7 +44,7 @@ const Body = () => {
 
       }
       <Footer />
-    </>
+    </div>
   );
 };
 export default Body;

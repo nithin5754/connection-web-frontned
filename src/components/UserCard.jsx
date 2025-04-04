@@ -29,10 +29,10 @@ const [isUser,setUser]=useState(user)
   },[user])
 
   return (
-    <div className="card bg-base-300 w-96 shadow-xl">
+    <div className="card bg-base-300 w-86 shadow-xl">
 {
   isUser?.photoUrl&&(
-    <figure className=" h-[300px]">
+    <figure className=" h-[200px]">
     <img className="w-full h-full object-fill" src={isUser?.photoUrl} alt="photo" loading="lazy" />
   </figure>
   )
